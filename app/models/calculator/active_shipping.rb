@@ -73,7 +73,7 @@ class Calculator::ActiveShipping < Calculator
       response = carrier.find_rates(origin, destination, packages)
       # turn this beastly array into a nice little hash
       rate_hash = Hash[*response.rates.collect { |rate| [rate.service_name, rate.price] }.flatten]
-      puts rate_hash
+      logger.debug rate_hash
       return rate_hash
     rescue ActiveMerchant::ActiveMerchantError => e
 
